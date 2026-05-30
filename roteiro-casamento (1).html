@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roteiro de Casamento — Foto & Vídeo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FDFAF6;
+  --bg2: #F5F0E8;
+  --bg3: #EDE7D9;
+  --dark: #1E1A16;
+  --dark2: #3A3228;
+  --gold: #9A7030;
+  --gold-light: #C49A50;
+  --gold-pale: #EFE0C0;
+  --muted: #6B5F52;
+  --muted2: #9A8E82;
+  --border: rgba(154,112,48,0.2);
+  --border2: rgba(154,112,48,0.1);
+  --line: #E4DAC8;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--dark);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Header */
+header {
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  padding: 56px 48px 44px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.logo-area h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 6vw, 68px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--dark);
+}
+
+.logo-area h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.logo-area p {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--muted2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.header-meta {
+  text-align: right;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 2;
+}
+
+/* Nav */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(253,250,246,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+nav::-webkit-scrollbar { display: none; }
+
+.nav-tab {
+  flex-shrink: 0;
+  padding: 20px 30px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.nav-tab:hover { color: var(--dark); background: var(--bg2); }
+
+.nav-tab.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+  background: var(--bg2);
+}
+
+.tab-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  margin-right: 8px;
+  opacity: 0.45;
+}
+
+/* Main */
+main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 64px 48px 120px;
+}
+
+.tab-panel { display: none; animation: fadein 0.35s ease; }
+.tab-panel.active { display: block; }
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Section heading */
+.section-heading { margin-bottom: 52px; }
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+
+.section-heading h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--dark);
+}
+
+.section-heading h2 em { font-style: italic; color: var(--gold-light); }
+
+.section-heading p {
+  margin-top: 16px;
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 560px;
+}
+
+/* ===== TIMELINE ===== */
+.legend {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.badge {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 11px;
+  border-radius: 99px;
+  font-weight: 500;
+}
+
+.badge-foto  { background: #EAF1F8; color: #2E6A9E; border: 1px solid #C2D9EE; }
+.badge-video { background: #FBF3E3; color: #8A6010; border: 1px solid #E8D09A; }
+.badge-ambos { background: #EAF4EE; color: #2A7048; border: 1px solid #B4D9C0; }
+
+.timeline { position: relative; }
+
+.phase {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 0 28px;
+  margin-bottom: 0;
+}
+
+.phase-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 6px;
+}
+
+.phase-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+.phase-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 1px var(--gold-light);
+}
+
+.phase-line {
+  width: 1px;
+  flex: 1;
+  background: var(--line);
+  min-height: 60px;
+  margin-top: 6px;
+}
+
+.phase:last-child .phase-line { display: none; }
+
+.phase-right { padding-bottom: 52px; }
+
+.phase-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.phase-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--dark);
+  line-height: 1.2;
+}
+
+.badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+
+.phase-time {
+  font-size: 13px;
+  color: var(--muted2);
+  margin-bottom: 18px;
+  letter-spacing: 0.02em;
+}
+
+.phase-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.phase-items li {
+  display: flex;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.phase-items li::before {
+  content: '—';
+  color: var(--gold-light);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.phase-items li strong { color: var(--dark2); font-weight: 500; }
+
+/* ===== CHECKLIST ===== */
+.progress-wrap { margin-bottom: 44px; }
+
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.progress-track {
+  height: 3px;
+  background: var(--bg3);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+.checklist-group { margin-bottom: 44px; }
+
+.checklist-group-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--dark);
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  transition: padding-left 0.15s;
+}
+
+.check-item:last-child { border-bottom: none; }
+.check-item:hover { padding-left: 4px; }
+
+.custom-cb {
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  background: white;
+}
+
+.custom-cb.checked {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.custom-cb.checked::after {
+  content: '✓';
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.check-label {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.65;
+  transition: all 0.2s;
+}
+
+.check-item.done .check-label {
+  text-decoration: line-through;
+  color: var(--muted2);
+}
+
+/* ===== DICAS ===== */
+.tips-grid { display: flex; flex-direction: column; gap: 16px; }
+
+.tip-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 26px 30px;
+  border-left: 4px solid transparent;
+  transition: box-shadow 0.2s;
+}
+
+.tip-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+
+.tip-card.success { border-left-color: #4A9A6A; }
+.tip-card.info    { border-left-color: #3A7AAA; }
+.tip-card.warn    { border-left-color: var(--gold); }
+.tip-card.danger  { border-left-color: #CC5555; }
+
+.tip-icon {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.tip-card.success .tip-icon { color: #2A7A4A; }
+.tip-card.info    .tip-icon { color: #1A5A8A; }
+.tip-card.warn    .tip-icon { color: var(--gold); }
+.tip-card.danger  .tip-icon { color: #AA3333; }
+
+.tip-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--dark);
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+
+.tip-body {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* ===== PERGUNTAS ===== */
+.q-group { margin-bottom: 44px; }
+
+.q-group-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--dark);
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.q-list { display: flex; flex-direction: column; }
+
+.q-item {
+  display: flex;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: flex-start;
+}
+
+.q-item:last-child { border-bottom: none; }
+
+.q-arrow {
+  color: var(--gold-light);
+  font-size: 14px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.q-text {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.q-text strong { color: var(--dark2); font-weight: 500; }
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 48px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--muted2);
+  letter-spacing: 0.06em;
+}
+
+footer em {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--gold);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  header { padding: 40px 24px 32px; }
+  main { padding: 44px 24px 80px; }
+  .phase { grid-template-columns: 48px 1fr; gap: 0 16px; }
+  .nav-tab { padding: 16px 18px; font-size: 12px; }
+  .tip-card { padding: 20px 22px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-area">
+    <h1>Roteiro de <em>Casamento</em></h1>
+    <p>Guia completo · Fotografia &amp; Vídeo</p>
+  </div>
+  <div class="header-meta">
+    <span>Para fotógrafo e cinegrafista</span>
+    <span>Do making off à entrega</span>
+  </div>
+</header>
+
+<nav>
+  <button class="nav-tab active" onclick="showTab('roteiro', this)">
+    <span class="tab-num">01</span>Roteiro do Dia
+  </button>
+  <button class="nav-tab" onclick="showTab('checklist', this)">
+    <span class="tab-num">02</span>Checklist
+  </button>
+  <button class="nav-tab" onclick="showTab('dicas', this)">
+    <span class="tab-num">03</span>Dicas Profissionais
+  </button>
+  <button class="nav-tab" onclick="showTab('perguntas', this)">
+    <span class="tab-num">04</span>Perguntas para os Noivos
+  </button>
+</nav>
+
+<main>
+
+<!-- ROTEIRO DO DIA -->
+<div id="panel-roteiro" class="tab-panel active">
+  <div class="section-heading">
+    <div class="eyebrow">Cronograma completo</div>
+    <h2>Roteiro do <em>Dia</em></h2>
+    <p>Cada fase do casamento em ordem, com o que fotógrafo e cinegrafista devem registrar.</p>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="badge badge-foto">Foto</span> Fotógrafo</div>
+    <div class="legend-item"><span class="badge badge-video">Vídeo</span> Cinegrafista</div>
+    <div class="legend-item"><span class="badge badge-ambos">Ambos</span> Juntos</div>
+  </div>
+
+  <div class="timeline">
+
+    <div class="phase">
+      <div class="phase-left">
+        <div class="phase-num">01</div>
+        <div class="phase-dot"></div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-right">
+        <div class="phase-header">
+          <div class="phase-title">Making off da noiva</div>
+          <div class="badges"><span class="badge badge-ambos">Ambos</span></div>
+        </div>
+        <div class="phase-time">⏱ 1–1,5h antes da cerimônia</div>
+        <ul class="phase-items">
+          <li>Chegar <strong>antes da noiva estar pronta</strong> — registrar o processo completo</li>
+          <li>Detalhes obrigatórios: vestido, sapatos, buquê, alianças, convite</li>
+          <li>Vídeo: gravar na vertical para stories, capturar o bastidor do bastidor</li>
+          <li>Foto: focar em reações emocionais e expressões naturais</li>
+          <li><strong>Primeiro olhar dela no espelho</strong> — momento insubstituível</li>
+          <li>Familiares ajudando: mãe abotoando o vestido, irmã arrumando o véu</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-left">
+        <div class="phase-num">02</div>
+        <div class="phase-dot"></div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-right">
+        <div class="phase-header">
+          <div class="phase-title">Antes da cerimônia</div>
+          <div class="badges"><span class="badge badge-ambos">Ambos</span></div>
+        </div>
+        <div class="phase-time">⏱ 30–45min antes do início</div>
+        <ul class="phase-items">
+          <li><strong>Chegar antes dos convidados</strong> — fotografar a decoração vazia</li>
+          <li>Registrar fachada da igreja, ambiente interno, flores e arranjos</li>
+          <li>Vídeo: posicionar microfone de bolinha <strong>abaixo</strong> da caixa de som (nunca em cima)</li>
+          <li>Testar ângulos: altar, corredor, galeria — planejar posições</li>
+          <li>Convidados chegando: cumprimentos, expectativa, emoção</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-left">
+        <div class="phase-num">03</div>
+        <div class="phase-dot"></div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-right">
+        <div class="phase-header">
+          <div class="phase-title">Entrada da noiva</div>
+          <div class="badges"><span class="badge badge-ambos">Ambos</span></div>
+        </div>
+        <div class="phase-time">⏱ Início da cerimônia — MOMENTO CHAVE</div>
+        <ul class="phase-items">
+          <li>Estar posicionado <strong>antes da música começar</strong></li>
+          <li>Foto: ângulo frontal + lateral para capturar o noivo vendo ela entrar</li>
+          <li><strong>Expressão do noivo ao ver a noiva</strong> — não pode faltar</li>
+          <li>Vídeo: acompanhar o trajeto, capturar reações dos convidados</li>
+          <li>Pai entregando a noiva — registrar o abraço e a troca de mãos</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-left">
+        <div class="phase-num">04</div>
+        <div class="phase-dot"></div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-right">
+        <div class="phase-header">
+          <div class="phase-title">Cerimônia</div>
+          <div class="badges"><span class="badge badge-ambos">Ambos</span></div>
+        </div>
+        <div class="phase-time">⏱ Duração completa da cerimônia</div>
+        <ul class="phase-items">
+          <li><strong>Nunca cruzar na frente um do outro</strong> — combinar posições antes</li>
+          <li>Momentos obrigatórios: troca de alianças, votos, <strong>primeiro beijo</strong></li>
+          <li>Foto: reações dos familiares — mãe, pai, irmãos com lágrimas</li>
+          <li>Vídeo: capturar votos com <strong>áudio limpo</strong> (microfone posicionado)</li>
+          <li>Registrar a plateia: olhares, emoções, sorrisos</li>
+          <li>Saída dos noivos pelo corredor — pétalas, confetes, aplausos</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-left">
+        <div class="phase-num">05</div>
+        <div class="phase-dot"></div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-right">
+        <div class="phase-header">
+          <div class="phase-title">Fotos pós-cerimônia</div>
+          <div class="badges"><span class="badge badge-foto">Foto</span></div>
+        </div>
+        <div class="phase-time">⏱ Imediatamente após (~30–45min)</div>
+        <ul class="phase-items">
+          <li>Fotos dos noivos juntos — explorar o ambiente da igreja</li>
+          <li>Família dela: com os pais, com os avós, com os irmãos</li>
+          <li>Família dele: com os pais, com a família toda</li>
+          <li>Padrinhos, madrinhas, daminha, pajem</li>
+          <li><strong>Cinegrafista vai na frente para a recepção</strong> — filmar ambiente vazio</li>
+          <li>Ser ágil: os noivos cansam rapidamente</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-left">
+        <div class="phase-num">06</div>
+        <div class="phase-dot"></div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-right">
+        <div class="phase-header">
+          <div class="phase-title">Chegada à recepção</div>
+          <div class="badges"><span class="badge badge-ambos">Ambos</span></div>
+        </div>
+        <div class="phase-time">⏱ Antes dos noivos chegarem — URGENTE</div>
+        <ul class="phase-items">
+          <li><strong>Fotografar a decoração antes dos convidados encherem o espaço</strong></li>
+          <li>Mesa do bolo, arranjos, mesas ainda vazias — registrar detalhes</li>
+          <li>Lembranças dos convidados, cardápio, nome nas mesas</li>
+          <li>Irlanda: atenção para possível <strong>dança da noiva com o pai</strong> na chegada</li>
+          <li>Entrada dos noivos na festa — registrar a reação dos convidados</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-left">
+        <div class="phase-num">07</div>
+        <div class="phase-dot"></div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-right">
+        <div class="phase-header">
+          <div class="phase-title">Festa e recepção</div>
+          <div class="badges"><span class="badge badge-ambos">Ambos</span></div>
+        </div>
+        <div class="phase-time">⏱ Durante a festa</div>
+        <ul class="phase-items">
+          <li>Valsa / primeira dança do casal</li>
+          <li>Agradecimento dos noivos aos convidados</li>
+          <li><strong>Ser o paparazzi do casal</strong> — ficar sempre por perto</li>
+          <li>Capturar abraços, risadas, momentos espontâneos</li>
+          <li>Vídeo: editar e postar stories nos momentos mais calmos</li>
+          <li>Aproveitar para comer e descansar quando o ritmo baixar</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-left">
+        <div class="phase-num">08</div>
+        <div class="phase-dot"></div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-right">
+        <div class="phase-header">
+          <div class="phase-title">Mesa do bolo</div>
+          <div class="badges"><span class="badge badge-ambos">Ambos</span></div>
+        </div>
+        <div class="phase-time">⏱ Momento específico da festa</div>
+        <ul class="phase-items">
+          <li>Fotos protocolares: casal + família próxima, tios, primos</li>
+          <li><strong>Pedir ao cerimonial uma lista das pessoas que não podem faltar</strong></li>
+          <li>Ela com a mãe, ela com o pai, ele com a sogra, todos juntos</li>
+          <li>Brinde dos noivos — registrar o olhar entre eles</li>
+          <li>Corte do bolo — ângulo frontal e lateral</li>
+          <li><strong>Insistir na foto dos dois sozinhos na mesa do bolo</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-left">
+        <div class="phase-num">09</div>
+        <div class="phase-dot"></div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-right">
+        <div class="phase-header">
+          <div class="phase-title">Entrega — após o casamento</div>
+          <div class="badges"><span class="badge badge-foto">Foto</span><span class="badge badge-video">Vídeo</span></div>
+        </div>
+        <div class="phase-time">⏱ Nos dias seguintes</div>
+        <ul class="phase-items">
+          <li>Foto: <strong>prévia de 100–200 fotos em até 24h</strong> após o casamento</li>
+          <li>Entrega completa em até 30 dias — editar no Lightroom</li>
+          <li>Vídeo: stories postados em até 24h (making of → cerimônia → recepção)</li>
+          <li><strong>Reels final</strong>: 2–3 minutos com os melhores momentos</li>
+          <li>Material bruto: subir no Drive e compartilhar acesso com os noivos</li>
+          <li>Gravar nos <strong>dois cartões simultaneamente</strong> como backup</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<div id="panel-checklist" class="tab-panel">
+  <div class="section-heading">
+    <div class="eyebrow">Não esqueça nada</div>
+    <h2><em>Checklist</em> completo</h2>
+    <p>Equipamentos, briefing com os noivos e momentos que não podem faltar. Marque conforme avança.</p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-meta">
+      <span id="prog-label">0 de 0 itens concluídos</span>
+      <span id="prog-pct">0%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <div class="checklist-group">
+    <div class="checklist-group-title">📦 Equipamento — antes de ir</div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Câmera com bateria 1 completamente carregada</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Bateria 2 carregada (deixar uma terceira carregando se possível)</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Cartão de memória 1 formatado e testado</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Cartão de memória 2 formatado — gravar nos dois slots simultaneamente</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Carregador de bateria na bolsa para emergências</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Microfone de bolinha (pegar emprestado ou comprar um pequeno)</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Lentes: 35mm, 50mm e 24-105mm — verificar fixação</div></div>
+  </div>
+
+  <div class="checklist-group">
+    <div class="checklist-group-title">📋 Reunião prévia com os noivos</div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Confirmar horário e local do making off</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Confirmar local da cerimônia e da recepção (mesmo local ou separados?)</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Perguntar se haverá votos pessoais e se podem ser gravados</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Perguntar sobre valsa, primeira dança ou momento especial</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Perguntar sobre dança da noiva com o pai (costume comum na Irlanda)</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Pedir lista de pessoas obrigatórias nas fotos (quem viajou de longe?)</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Combinar formato de entrega: stories, reels, vídeo completo?</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Combinar prazo e plataforma de entrega (Drive, WeTransfer…)</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Definir se gravação é vertical (redes) ou horizontal (memória)</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Verificar se a igreja permite gravação e posicionamento de microfone</div></div>
+  </div>
+
+  <div class="checklist-group">
+    <div class="checklist-group-title">📸 Momentos que não podem faltar</div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Detalhes: vestido, sapatos, buquê e alianças</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Noiva no espelho — o primeiro olhar completo</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Decoração da cerimônia sem convidados (chegar antes)</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Expressão do noivo ao ver a noiva entrar</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Pai entregando a noiva</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Troca de alianças</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Votos — com áudio limpo gravado no microfone</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Primeiro beijo</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Saída pelos confetes / pétalas / aplausos</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Decoração da recepção antes dos convidados chegarem</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Brinde e corte do bolo</div></div>
+    <div class="check-item" onclick="toggleItem(this)"><div class="custom-cb"></div><div class="check-label">Foto dos dois sozinhos na mesa do bolo — insistir se necessário</div></div>
+  </div>
+</div>
+
+<!-- DICAS -->
+<div id="panel-dicas" class="tab-panel">
+  <div class="section-heading">
+    <div class="eyebrow">O que a experiência ensina</div>
+    <h2>Dicas <em>Profissionais</em></h2>
+    <p>Pontos críticos que fazem a diferença entre um bom trabalho e um trabalho inesquecível.</p>
+  </div>
+
+  <div class="tips-grid">
+
+    <div class="tip-card success">
+      <div class="tip-icon">📷 Equipamento</div>
+      <div class="tip-title">Sem flash? Depende da situação</div>
+      <div class="tip-body">Com luz natural abundante e câmera R6 Mark II, você resolve a maior parte dos cenários sem flash. O problema real são recepções fechadas com pouca luz. Verifique o local com antecedência. Ambiente aberto ou durante o verão irlandês (sol até as 22h)? Tranquilo. Local fechado sem janelas à noite? Considere um LED portátil pequeno.</div>
+    </div>
+
+    <div class="tip-card warn">
+      <div class="tip-icon">🎙 Áudio</div>
+      <div class="tip-title">Áudio é metade do vídeo — cuide dele</div>
+      <div class="tip-body">O microfone de bolinha (com ímã) deve ser posicionado abaixo da caixa de som da igreja — nunca em cima, para não estourar. Se conseguir um microfone de lapela no pastor ou nos noivos durante os votos, melhor ainda. Votos com bom áudio são o que transforma um reels comum em algo que faz todo mundo chorar.</div>
+    </div>
+
+    <div class="tip-card warn">
+      <div class="tip-icon">📍 Posicionamento</div>
+      <div class="tip-title">Fotógrafo e cinegrafista nunca se cruzam</div>
+      <div class="tip-body">Combinar ângulos antes da cerimônia é obrigatório. Se um está na posição frontal, o outro fica na lateral ou atrás. A câmera de um não pode aparecer no enquadramento do outro — isso é impossível de corrigir na edição. Ficam juntos a cerimônia toda, mas nunca cruzando a linha de visão.</div>
+    </div>
+
+    <div class="tip-card info">
+      <div class="tip-icon">🏃 Estratégia</div>
+      <div class="tip-title">Cinegrafista vai na frente para a recepção</div>
+      <div class="tip-body">Enquanto o fotógrafo finaliza as fotos de família pós-cerimônia, o cinegrafista já vai na frente e filma toda a decoração sem ninguém. Quando os noivos chegarem, o ambiente já está registrado. Essa divisão garante que nenhum detalhe da decoração se perca na correria de convidados chegando.</div>
+    </div>
+
+    <div class="tip-card success">
+      <div class="tip-icon">⚡ Entrega</div>
+      <div class="tip-title">Prévia em 24h — o diferencial que gera indicações</div>
+      <div class="tip-body">Selecione 100–200 fotos principais e envie no dia seguinte. Os noivos ficam ansiosos para ver os resultados — essa entrega rápida gera elogios e compartilhamentos. O pacote completo pode ter prazo de 30 dias, mas a prévia rápida é o que as pessoas vão comentar e recomendar.</div>
+    </div>
+
+    <div class="tip-card danger">
+      <div class="tip-icon">💾 Segurança</div>
+      <div class="tip-title">Backup duplo — sem exceção</div>
+      <div class="tip-body">Configure a câmera para gravar nos dois slots de cartão simultaneamente. Se um cartão falhar, o outro tem tudo. Em casamento não existe segunda chance. Leve pelo menos dois cartões de 64GB. A redundância não é paranoia — é profissionalismo básico.</div>
+    </div>
+
+    <div class="tip-card danger">
+      <div class="tip-icon">😤 Gestão dos noivos</div>
+      <div class="tip-title">Noivos cansam rápido — seja cirúrgico</div>
+      <div class="tip-body">Na fase de fotos pós-cerimônia e mesa do bolo, os noivos estão emocionalmente esgotados. Tenha a lista de fotos protocolares pronta antes, peça ao cerimonial para organizar as pessoas e execute com agilidade. Reserve um momento só para os dois — mesmo que resistam, essa foto costuma ser uma das favoritas do álbum.</div>
+    </div>
+
+    <div class="tip-card success">
+      <div class="tip-icon">🎬 Entrega de vídeo</div>
+      <div class="tip-title">Reels: os melhores momentos, não a íntegra</div>
+      <div class="tip-body">A entrega não é o casamento completo — é uma curadoria de 2 a 3 minutos. Stories em três etapas (making of → cerimônia → recepção), depois tudo junto em um reels. O material bruto fica no Drive para os noivos, mas o que vai fazer sucesso nas redes é o recorte bem editado.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PERGUNTAS -->
+<div id="panel-perguntas" class="tab-panel">
+  <div class="section-heading">
+    <div class="eyebrow">Briefing com os noivos</div>
+    <h2>Perguntas para <em>alinhar</em></h2>
+    <p>Faça essas perguntas antes do casamento — em reunião ou por mensagem. Cada resposta muda o que você precisa registrar.</p>
+  </div>
+
+  <div class="q-group">
+    <div class="q-group-title">🕐 Cronograma e logística</div>
+    <div class="q-list">
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">Que horas começa o making off? <strong>Onde fica o local?</strong></div></div>
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">A cerimônia e a recepção são no <strong>mesmo local ou em locais diferentes?</strong></div></div>
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">Qual a <strong>duração prevista</strong> da cerimônia?</div></div>
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">Haverá um <strong>cerimonial ou organizador</strong> presente no dia? Como entrar em contato?</div></div>
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">Tem algum <strong>momento surpresa</strong> planejado entre cerimônia e recepção?</div></div>
+    </div>
+  </div>
+
+  <div class="q-group">
+    <div class="q-group-title">💍 Momentos especiais</div>
+    <div class="q-list">
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">Vai ter <strong>votos pessoais</strong>? Podem ser gravados com microfone?</div></div>
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">Vai ter <strong>valsa ou primeira dança</strong> na recepção?</div></div>
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">Tem <strong>dança da noiva com o pai</strong> ou do noivo com a mãe? (costume comum na Irlanda)</div></div>
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">Haverá <strong>brinde e corte do bolo</strong>? Em que momento?</div></div>
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">Tem alguma <strong>tradição local irlandesa</strong> que será incluída na cerimônia?</div></div>
+    </div>
+  </div>
+
+  <div class="q-group">
+    <div class="q-group-title">👨‍👩‍👧‍👦 Fotos familiares</div>
+    <div class="q-list">
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">Quais <strong>familiares não podem faltar</strong> nas fotos? (quem viajou de longe?)</div></div>
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">Tem alguém especial — avó, padrinho, amigo de infância — que <strong>precisa estar nos registros?</strong></div></div>
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">Preferem fotos mais <strong>posadas</strong> ou mais <strong>naturais e espontâneas?</strong></div></div>
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">Quem será o <strong>ponto de contato</strong> para organizar as pessoas nas fotos protocolares?</div></div>
+    </div>
+  </div>
+
+  <div class="q-group">
+    <div class="q-group-title">📦 Entrega e formato</div>
+    <div class="q-list">
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">Querem os <strong>stories postados no mesmo dia</strong> ou podem ser no dia seguinte?</div></div>
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">Preferem vídeo <strong>vertical</strong> (redes sociais) ou <strong>horizontal</strong> (vídeo de memória)?</div></div>
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">Qual <strong>plataforma preferem</strong> para receber os arquivos? (Drive, WeTransfer, e-mail próprio?)</div></div>
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">Tem <strong>preferência de estilo de edição</strong>? (claro, tom de filme, cinematográfico…)</div></div>
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">O <strong>prazo de 30 dias</strong> para entrega completa funciona ou precisam antes?</div></div>
+    </div>
+  </div>
+
+  <div class="q-group">
+    <div class="q-group-title">🎙 Áudio e permissões</div>
+    <div class="q-list">
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">A cerimônia vai ter <strong>sistema de som e microfone</strong>?</div></div>
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">A <strong>igreja ou pastor</strong> tem alguma restrição com gravação de vídeo ou foto?</div></div>
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">É permitido <strong>posicionar um microfone externo</strong> perto do altar ou caixa de som?</div></div>
+      <div class="q-item"><div class="q-arrow">→</div><div class="q-text">Os <strong>convidados podem tirar fotos</strong> durante a cerimônia ou é unplugged?</div></div>
+    </div>
+  </div>
+
+</div>
+
+</main>
+
+<footer>
+  <em>Cada casamento é único</em> — este roteiro é um ponto de partida, não uma regra. Adapte conforme os noivos e o evento.
+</footer>
+
+<script>
+function showTab(tab, btn) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + tab).classList.add('active');
+  window.scrollTo({ top: document.querySelector('nav').offsetTop, behavior: 'smooth' });
+}
+
+function toggleItem(el) {
+  const cb = el.querySelector('.custom-cb');
+  const done = !cb.classList.contains('checked');
+  cb.classList.toggle('checked', done);
+  el.classList.toggle('done', done);
+  updateProgress();
+}
+
+function updateProgress() {
+  const all = document.querySelectorAll('.check-item').length;
+  const done = document.querySelectorAll('.check-item.done').length;
+  const pct = all ? Math.round(done / all * 100) : 0;
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-label').textContent = done + ' de ' + all + ' itens concluídos';
+  document.getElementById('prog-pct').textContent = pct + '%';
+}
+
+updateProgress();
+</script>
+</body>
+</html>
